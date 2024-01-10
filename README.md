@@ -11,3 +11,5 @@ Generates a random password with some predefined criteria
       d.Special characters ($@%&*, etc.)
 user should select at least one character type.
 3. Once all prompts are answered, the password will be generated and displayed in an alert or written to the page.
+****************************************************
+********Deployed application link :  https://jayapradha-jayaraj.github.io/Password-Generator/ **********

@@ -87,19 +87,89 @@ var upperCasedCharacters = [
   'Y',
   'Z'
 ];
-
+var pasLenChecked;
+var i=0;
+var passLength=0;
+var userCharType=0;
+var isNumIncluded;
+var islowercharacterIncluded;
+var isuppercharacterIncluded;
+var isspecialcharacterIncluded;
 // Function to prompt user for password options
-function getPasswordOptions() {
+function getPasswordOptions(passLength) {
+  isNumIncluded=confirm("can i include number Number?");
+    islowercharacterIncluded=confirm("can i include number lowercharacter?");
+    isuppercharacterIncluded=confirm("can i include number uppercharacter?");
+    isspecialcharacterIncluded=confirm("can i include number specialcharacter?");
+    
+        if(!(isNumIncluded||islowercharacterIncluded||isuppercharacterIncluded||isspecialcharacterIncluded)){
+            alert("Must select atleast one character type");
+            console.log("check1 isnum:",isNumIncluded+" "+ islowercharacterIncluded+" "+isuppercharacterIncluded+" "+isspecialcharacterIncluded);
+            return;
+          }
+          var characters = [];
 
+          if (includeNumeric=true) {
+            characters = characters.concat(numericCharacters);
+            console.log("check2 isnum:",characters);
+            
+          }
+        
+          if (includeLowercase=true) {
+            characters = characters.concat(lowerCasedCharacters);
+            console.log("check3 isnum:",characters);
+          }
+        
+          if (includeUppercase=true) {
+            characters = characters.concat(upperCasedCharacters);
+            console.log("check4 isnum:",characters);
+          }
+        
+          if (includeSpecial=true) {
+            characters = characters.concat(specialCharacters);
+            console.log("check5 isnum:",characters);
+          }
+      var createdpassword = "";
+          for (var i = 0; i < passLength; i++) {
+            createdpassword += getRandom(characters);
+            console.log("check6 isnum:",createdpassword);
+          }
+         return createdpassword;
 }
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-
+  //console.log("check7:",Math.floor(Math.random() * arr.));
+   var j =0;
+   j= Math.floor(Math.random() * arr.length);
+   console.log(j);
+  return arr[j];
 }
 
 // Function to generate password with user input
 function generatePassword() {
+//while(pasLenChecked){
+  passLength = parseInt(prompt("Enter the length of password: "));
+  validatepass(passLength);
+  getPasswordOptions(passLength);
+  //getRandom(arr);
+//}
+/*while(!pasLenChecked){
+  alert("Please enter a number between 8 to 128");
+  console.log("pasLenChecked2: ",pasLenChecked);
+  passLength = parseInt(prompt("Enter the length of password: "));
+  console.log(passLength);
+  validatepass(passLength); 
+  getPasswordOptions(passLength);
+  }*/
+  
+}
+
+function validatepass(passLength){
+  if(passLength >= 8 && passLength <=128){
+    pasLenChecked=true;
+    console.log("pasLenChecked1: ",pasLenChecked);
+  }
 
 }
 
@@ -108,8 +178,10 @@ var generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector('#password');
+  var password ="";
+  password= generatePassword();
+  var passwordText ="";
+  passwordText= document.querySelector('#password');
 
   passwordText.value = password;
 }
